@@ -4,7 +4,7 @@ N|Solid Cloud Foundry Buildpack
 This buildpack is compatible with the existing Cloud Foundry Node.js buildpack,
 but runs the application using the N|Solid Runtime instead of the open source
 version of Node.js.  In addition, if the application is bound to a user-provided
-service `nsolid-storage`, pointing to an N|Solid Storage server, that app will
+service `nsolid-console`, pointing to an N|Solid Console server, that app will
 have it's metrics tracked, etc, and will be visible in the N|Solid Console.
 
 For more information on N|Solid, visit the [N|Solid documentation site][].
@@ -39,7 +39,7 @@ or specifying the buildpack in your application's `manifest.yml` file:
       buildpack: <buildpack>
       ...
       services:
-       - nsolid-storage
+       - nsolid-console
 
 In both cases, the `<buildpack>` value is a URL to the git repo of this
 buildpack:
@@ -57,16 +57,16 @@ for some additional code to be run before your app starts.  This code:
 * computes configuration options for the N|Solid Runtime to be set as `NSOLID_*`
   environment variables
 
-* accesses the user-provided service `nsolid-storage`, that should to be bound
+* accesses the user-provided service `nsolid-console`, that should to be bound
   to the application, which provides the connection coordinates to the N|Solid
-  Storage server
+  Console server
 
 * optionally creates tunnels to allow the N|Solid Runtime to connect to the
-  N|Solid Storage server
+  N|Solid Console server
 
 * starts the app with the N|Solid Runtime
 
-See below for more information on the user-provided service `nsolid-storage`.
+See below for more information on the user-provided service `nsolid-console`.
 
 
 Selecting the version of Node.js to use
@@ -109,90 +109,90 @@ following environment variables are available:
 * `NSOLID_CF_RUN_TUNNELS`
 
   Set to `false` to indicate the socket tunnels should not be used to connect
-  the N|Solid Agent to the N|Solid Storage server.  Should only be needed for
-  the N|Solid Storage server when run as a Cloud Foundry application
+  the N|Solid Agent to the N|Solid Console server.  Should only be needed for
+  the N|Solid Console server when run as a Cloud Foundry application
 
 * `NSOLID_CF_RUN_AGENT`
 
   Set to `false` to not start the N|Solid Agent for this app.  It will not
-  connect to the N|Solid Storage server or be visible in the N|Solid Console
+  connect to the N|Solid Console server or be visible in the N|Solid Console
   server.
 
 
-Connecting to an N|Solid Storage server
+Connecting to an N|Solid Console server
 ================================================================================
 
 To monitor your application with the N|Solid Console, or access it via the
 N|Solid Command Line Interface, the application will need to connect to the
-N|Solid Storage server.  There are currently two supported methods to run an
-N|Solid Storage server and N|Solid Console server with this buildpack:
+N|Solid Console server.  There are currently two supported methods to run an
+N|Solid Console server with this buildpack:
 
-* running the servers "on prem", within your private networking environment,
+* running the server "on prem", within your private networking environment,
   which is accessible from apps running in Cloud Foundry
 
-* running the servers as Cloud Foundry apps themselves, within the same Cloud
+* running the server as a Cloud Foundry app itself, within the same Cloud
   Foundry installation
 
-There are a number of limitations around running an N|Solid Storage server
+There are a number of limitations around running an N|Solid Console server
 as a Cloud Foundry app, but it's also a very easy way to get started.
 
 Limitations:
 
-* The N|Solid Runtime will connect to the N|Solid Storage server via `ssh`
+* The N|Solid Runtime will connect to the N|Solid Console server via `ssh`
   tunnels, using the `cf ssh` command.  This requires all the information
   required to run a `cf` command, including a valid userid and password.
 
-* The N|Solid Storage server persists data to disk, and so when restarted,
+* The N|Solid Console server persists data to disk, and so when restarted,
   will lose all persisted data.  This includes:
 
   * historical metrics captured
-  * thresholds settings
+  * saved views and global notifications
   * CPU profiles and heap snapshots previously collected
 
 Which method you use will be reflected in the user-provided service
-`nsolid-storage`, described below.
+`nsolid-console`, described below.
 
-To use N|Solid Storage and N|Solid Console "on prem", please follow the
+To use N|Solid Console "on prem", please follow the
 directions available at the [N|Solid documentation site][].
 
-To use N|Solid Storage and N|Solid Console as Cloud Foundry apps, please
+To use  N|Solid Console as a Cloud Foundry app, please
 follow the directions available in the
 [nsolid-cf GitHub repo](https://github.com/nodesource/nsolid-cf).
 
 
-user-provided service `nsolid-storage`
+user-provided service `nsolid-console`
 ================================================================================
 
-To connect an app using this buildpack to an N|Solid Storage server, you will
-need to bind a [user-provided service][] named `nsolid-storage` to the app.
+To connect an app using this buildpack to an N|Solid Console server, you will
+need to bind a [user-provided service][] named `nsolid-console` to the app.
 
-The `nsolid-storage` service only needs to be created once per Cloud Foundry
+The `nsolid-console` service only needs to be created once per Cloud Foundry
 space, and can then be bound to every app running in that space.
 
 To create the user-provided service, the contents of the user-provided service
 should be placed into a JSON file, and then you can run the following command to
 create it:
 
-    cf cups nsolid-storage -p <file name>
+    cf cups nsolid-console -p <file name>
 
 The contents of the user-provided service can later be updated with the
 command:
 
-    cf uups nsolid-storage -p <file name>
+    cf uups nsolid-console -p <file name>
 
 The contents of the JSON file contain the coordinates to connect to an
-N|Solid Storage server, and are structured differently depending on whether
-your N|Solid Storage server is running "on prem" or as a Cloud Foundry
+N|Solid Console server, and are structured differently depending on whether
+your N|Solid Console server is running "on prem" or as a Cloud Foundry
 app (see above).
 
 
-### `nsolid-storage` service for N|Solid Storage server running "on prem"
+### `nsolid-console` service for N|Solid Console server running "on prem"
 
 The contents of the JSON file should be as follows:
 
 ```json
 {
-  "publicKey": "<N|Solid Storage public key>",
+  "publicKey": "<N|Solid Console public key>",
 
   "tunnel":    null,
 
@@ -205,53 +205,53 @@ The contents of the JSON file should be as follows:
 ```
 
 The `publicKey` property should be the public key configured for the N|Solid
-Storage server.  If no property is provided, the default N|Solid Storage public
+Console server.  If no property is provided, the default N|Solid Console public
 key is used.
 
 The `tunnel` property should be either null, or not provided at all.  It's only
-used when running N|Solid Storage as a Cloud Foundry app.
+used when running N|Solid Console as a Cloud Foundry app.
 
 The `sockets` property is an object which contains three other properties:
 `command`, `data`, `bulk`.  These properties should contain the `host:port`
-values of the N|Solid Storage server's corresponding sockets.
+values of the N|Solid Console server's corresponding sockets.
 
 
-### `nsolid-storage` service for N|Solid Storage server running as a Cloud Foundry app
+### `nsolid-console` service for N|Solid Console server running as a Cloud Foundry app
 
 The contents of the JSON file should be as follows:
 
 ```json
 {
-  "publicKey": "<N|Solid Storage public key>",
+  "publicKey": "<N|Solid Console public key>",
 
   "tunnel":    "cf-ssh",
 
-  "storageApp": {
+  "consoleApp": {
     "user":       "user",
     "password":   "pass",
     "cfapi":      "https://api.local.pcfdev.io",
     "org":        "pcfdev-org",
     "space":      "pcfdev-space",
-    "app":        "nsolid-storage"
+    "app":        "nsolid-console"
   }
 }
 ```
 
 The `publicKey` property should be the public key configured for the N|Solid
-Storage server.  If no property is provided, the default N|Solid Storage public
+Console server.  If no property is provided, the default N|Solid Console public
 key is used.
 
 The `tunnel` property should be set to `cf-ssh`.
 
-The `storageApp` property contains the information required to run the `cf ssh`
-command when the app is started, to tunnel connections to the N|Solid Storage
+The `consoleApp` property contains the information required to run the `cf ssh`
+command when the app is started, to tunnel connections to the N|Solid Console
 app running as a Cloud Foundry app.  Before `cf ssh` is run, a `cf login` will
-be run as follows, using the properties from the `storageApp` object:
+be run as follows, using the properties from the `consoleApp` object:
 
     cf login -u ${user} -p ${password} -o ${org} -s ${space} -a ${cfapi}
 
-The `app` property of the `storageApp` should be the app name of the N|Solid
-Storage server running as a Cloud Foundry app.
+The `app` property of the `consoleApp` should be the app name of the N|Solid
+Console server running as a Cloud Foundry app.
 
 [user-provided service]: https://docs.cloudfoundry.org/devguide/services/user-provided.html
 

@@ -32,7 +32,9 @@ To rebuild/test the buildpacks in context of those changes:
   archives
 * run `test/test-apps-run.sh` to run tests against those buildpacks
   * note the tests run against a local, default install of [PCFdev][]
-* run `test/test-apps-verify.js` to verify the results of those tests
+* run `test/test-apps-verify.js` to verify the results of those tests, if
+  you'd like to run the verification bits again, this is run at the end
+  of `test/test-apps-run.sh` as well.
 
 [PCFdev]: https://github.com/pivotal-cf/pcfdev
 

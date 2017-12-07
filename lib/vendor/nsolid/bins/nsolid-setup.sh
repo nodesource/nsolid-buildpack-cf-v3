@@ -22,12 +22,12 @@ fi
 if [ "$NSOLID_CF_RUN_AGENT" = "false" ]; then
   echo '$NSOLID_CF_RUN_AGENT=false, so not running agent'
 else
-  export NSOLID_APPNAME=`node ~/.nsolid-bin/compute-env-value.js NSOLID_APPNAME`
+  export NSOLID_APP=`node ~/.nsolid-bin/compute-env-value.js NSOLID_APP`
   export NSOLID_TAGS=`node ~/.nsolid-bin/compute-env-value.js NSOLID_TAGS`
   export NSOLID_COMMAND_REMOTE=`node ~/.nsolid-bin/compute-env-value.js NSOLID_COMMAND_REMOTE`
   export NSOLID_DATA_REMOTE=`node ~/.nsolid-bin/compute-env-value.js NSOLID_DATA_REMOTE`
   export NSOLID_BULK_REMOTE=`node ~/.nsolid-bin/compute-env-value.js NSOLID_BULK_REMOTE`
-  export NSOLID_STORAGE_PUBKEY=`node ~/.nsolid-bin/compute-env-value.js NSOLID_STORAGE_PUBKEY`
+  export NSOLID_CONSOLE_PUBKEY=`node ~/.nsolid-bin/compute-env-value.js NSOLID_CONSOLE_PUBKEY`
 
   echo 'N|Solid environment variables:'
   set | grep NSOLID_
