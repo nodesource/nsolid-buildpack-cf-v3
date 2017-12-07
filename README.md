@@ -157,7 +157,7 @@ directions available at the [N|Solid documentation site][].
 
 To use  N|Solid Console as a Cloud Foundry app, please
 follow the directions available in the
-[nsolid-cf GitHub repo](https://github.com/nodesource/nsolid-cf).
+[nsolid-cf-v3 GitHub repo](https://github.com/nodesource/nsolid-cf-v3).
 
 
 user-provided service `nsolid-console`
