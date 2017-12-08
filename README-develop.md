@@ -44,7 +44,7 @@ When everything's ready to go:
 * tag commit with version number
 * upload bundled and unbundled zipped buildpacks to [GH release page][]
 
-[GH release page]: https://github.com/nodesource/nsolid-buildpack-cf/releases
+[GH release page]: https://github.com/nodesource/nsolid-buildpack-cf-v3/releases
 
 
 Differences from the Cloud Foundry Buildpack for Node.js
