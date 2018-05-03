@@ -75,7 +75,6 @@ Selecting the version of Node.js to use
 The buildpack currently only supports versions of the N|Solid Runtime
 corresponding to LTS releases of Node.js - currently:
 
-- 4.x (Argon)
 - 6.x (Boron)
 - 8.x (Carbon)
 
@@ -84,18 +83,18 @@ buildpack cannot be used with your app.
 
 You can select which of N|Solid Runtime to use, by setting the `engines`
 property in your `package.json` to the Node.js version corresponding to the
-N|Solid Runtime version.  This would either be a `4.x` or `6.x` styled semver
+N|Solid Runtime version.  This would either be a `6.x` or `8.x` styled semver
 values - and those are good values to use, as they will select the most recent
 available version of N|Solid Runtime for that Node.js release line.
 
 For example, the following `engines` property selects the N|Solid Runtime
-corresponding to Node.js 4.x LTS:
+corresponding to Node.js 8.x (Carbon) LTS:
 
     "engines" : {
-      "node" : "4.x"
+      "node" : "8.x"
     }
 
-By default, the N|Solid Runtime corresponding to Node.js 6.x LTS will be
+By default, the N|Solid Runtime corresponding to Node.js 6.x (Boron) LTS will be
 used.
 
 

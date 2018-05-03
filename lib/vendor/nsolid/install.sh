@@ -30,14 +30,8 @@ install_nsolid() {
   local SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   local PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../../.. && pwd )"
   local VERSION_NSOLID=`cat $PROJECT_PATH/VERSION.nsolid`
-  local VERSION_LTS="argon"
-  local VERSION_NODEX="4.x"
-
-  if [ "$NODE_VERSION" == "6.0.0" ];
-  then
-    VERSION_LTS="boron"
-    VERSION_NODEX="6.x"
-  fi
+  local VERSION_LTS="boron"
+  local VERSION_NODEX="6.x"
 
   if [ "$NODE_VERSION" == "8.0.0" ];
   then

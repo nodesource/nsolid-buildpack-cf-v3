@@ -58,11 +58,9 @@ cd ../../..
 mkdir -p $PROJECT_DIR/dependencies
 rm -rf   $PROJECT_DIR/dependencies/*
 
-download_nsolid "$VERSION_NSOLID" "argon" "$PROJECT_DIR/dependencies"
 download_nsolid "$VERSION_NSOLID" "boron" "$PROJECT_DIR/dependencies"
 download_nsolid "$VERSION_NSOLID" "carbon" "$PROJECT_DIR/dependencies"
 
-download_headers "$VERSION_NSOLID" "argon" "$PROJECT_DIR/dependencies"
 download_headers "$VERSION_NSOLID" "boron" "$PROJECT_DIR/dependencies"
 download_headers "$VERSION_NSOLID" "carbon" "$PROJECT_DIR/dependencies"
 

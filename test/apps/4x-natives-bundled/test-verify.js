@@ -6,7 +6,7 @@ exports.verify = verify
 
 // verify the output of the test
 function verify (t, results) {
-  utils.checkVersions(t, results, 'argon')
+  utils.checkVersions(t, results, 'boron')
   utils.checkUUID(t, results)
 
   t.equal(results.curl[0].buff, 'buffer', 'buff property has expected value')
