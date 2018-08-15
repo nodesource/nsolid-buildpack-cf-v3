@@ -50,9 +50,9 @@ function main() {
   echo "installing buildpacks"
   echo "-----------------------------------------------------------------------"
 
-  cf login -u admin -p admin -o pcfdev-org -a https://api.local.pcfdev.io --skip-ssl-validation
+  cf login -u admin -p admin -o cfdev-org -a https://api.v3.pcfdev.io --skip-ssl-validation
   installBuildPacks
-  cf login -u user  -p pass  -o pcfdev-org -a https://api.local.pcfdev.io --skip-ssl-validation
+  cf login -u user  -p pass  -o cfdev-org -a https://api.v3.pcfdev.io --skip-ssl-validation
 
   # run the single tests or all the tests
   if [[ ! -z "$oneTest" ]]; then
@@ -128,14 +128,14 @@ function runTest() {
   cf push > "$resultsDir/push-1.txt"
 
   echo "curling app 1st time..."
-  curl http://test-buildpack.local.pcfdev.io/ > "$resultsDir/curl-1.json"
+  curl http://test-buildpack.v3.pcfdev.io/ > "$resultsDir/curl-1.json"
 
   if [[ -e PUSH-TWICE ]]; then
     echo "pushing app 2nd time ..."
     cf push > "$resultsDir/push-2.txt"
 
     echo "curling app 2nd time..."
-    curl http://test-buildpack.local.pcfdev.io/ > "$resultsDir/curl-2.json"
+    curl http://test-buildpack.v3.pcfdev.io/ > "$resultsDir/curl-2.json"
   fi
 
   cd "$PROJECT_DIR"

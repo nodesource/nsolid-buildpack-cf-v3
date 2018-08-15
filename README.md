@@ -228,9 +228,9 @@ The contents of the JSON file should be as follows:
   "consoleApp": {
     "user":       "user",
     "password":   "pass",
-    "cfapi":      "https://api.local.pcfdev.io",
-    "org":        "pcfdev-org",
-    "space":      "pcfdev-space",
+    "cfapi":      "https://api.v3.pcfdev.io",
+    "org":        "cfdev-org",
+    "space":      "cfdev-space",
     "app":        "nsolid-console"
   }
 }
