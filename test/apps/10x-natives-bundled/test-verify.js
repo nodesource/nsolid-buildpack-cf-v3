@@ -8,7 +8,7 @@ exports.verify = verify
 function verify (t, results) {
   utils.checkVersions(t, results, 'dubnium')
   utils.checkUUID(t, results)
+  utils.checkBundled(t, results, true)
 
   t.equal(results.curl[0].buff, 'buffer', 'buff property has expected value')
-  utils.checkBundled(t, results, true)
 }

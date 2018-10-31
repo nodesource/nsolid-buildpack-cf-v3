@@ -23,15 +23,21 @@ init_nsolid $1
 
 # install the appropriate version of the N|Solid Runtime
 install_nsolid() {
-  # incoming version parm is the Node.js base LTS version; eg, 4.0.0 or 6.0.0
+  # incoming version parm is the Node.js base LTS version; eg, 6.0.0, 8.0.0, ...
   local NODE_VERSION="$1"
   local INSTALL_DIR="$2"
   local BUILD_DIR="$3"
   local SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   local PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../../.. && pwd )"
   local VERSION_NSOLID=`cat $PROJECT_PATH/VERSION.nsolid`
-  local VERSION_LTS="boron"
-  local VERSION_NODEX="6.x"
+  local VERSION_LTS="dubnium"
+  local VERSION_NODEX="10.x"
+
+  if [ "$NODE_VERSION" == "6.0.0" ];
+  then
+    VERSION_LTS="boron"
+    VERSION_NODEX="6.x"
+  fi
 
   if [ "$NODE_VERSION" == "8.0.0" ];
   then

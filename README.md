@@ -77,6 +77,7 @@ corresponding to LTS releases of Node.js - currently:
 
 - 6.x (Boron)
 - 8.x (Carbon)
+- 10.x (Dubnium)
 
 If your app will not run on these releases of Node.js, then this
 buildpack cannot be used with your app.
@@ -94,8 +95,8 @@ corresponding to Node.js 8.x (Carbon) LTS:
       "node" : "8.x"
     }
 
-By default, the N|Solid Runtime corresponding to Node.js 6.x (Boron) LTS will be
-used.
+By default, the N|Solid Runtime corresponding to Node.js 10.x (Dubnium) LTS
+will be used.
 
 
 Customizing use of the buildpack

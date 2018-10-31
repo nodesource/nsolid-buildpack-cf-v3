@@ -2,7 +2,7 @@
 language: nsolid
 default_versions:
 - name: node
-  version: 6.0.0
+  version: 10.0.0
 dependencies:
 - name: node
   version: 6.0.0                         # LTS line: boron
@@ -13,6 +13,12 @@ dependencies:
 - name: node
   version: 8.0.0                         # LTS line: carbon
   uri: https://example.com/8.0.0         # uri not used
+  md5: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  # md5 not used
+  cf_stacks:
+  - cflinuxfs2
+- name: node
+  version: 10.0.0                        # LTS line: dubnium
+  uri: https://example.com/10.0.0        # uri not used
   md5: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  # md5 not used
   cf_stacks:
   - cflinuxfs2
