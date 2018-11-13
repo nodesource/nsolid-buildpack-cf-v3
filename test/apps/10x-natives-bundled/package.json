@@ -5,7 +5,7 @@
     "node" : "10.x"
   },
   "dependencies": {
-    "express": "~4.14.0",
+    "express": "~4.16.4",
     "buffertools": "~2.1.2"
   }
 }
